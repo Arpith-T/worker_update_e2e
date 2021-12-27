@@ -123,4 +123,3 @@ else:
     print(f"Total time taken to update '{total_no_of_workers}' workers is -  {res} mins")
 
 
-worker_update_status_dict.update({"time_taken": res, "alias": alias})

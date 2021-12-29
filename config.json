@@ -1,0 +1,9 @@
+{
+  "payload": {
+    "softwareUpdateOperationType": "SCHEDULE",
+    "scheduledUtc": "",
+    "completeSystem": true
+  },
+  "base_url": "https://it-aciat001-trm.cfapps.sap.hana.ondemand.com"
+
+}

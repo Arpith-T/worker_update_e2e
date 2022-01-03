@@ -6,7 +6,7 @@ import time
 
 subtask_affected_list = []
 alias = alias_creation()
-
+print(alias)
 url = f"https://it-aciat001-trm.cfapps.sap.hana.ondemand.com/api/trm/v1/tenant-softwares/versions/{alias}/tenants"
 
 payload = json.dumps({

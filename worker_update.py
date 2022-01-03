@@ -78,12 +78,12 @@ print(f"Total time taken to update {res}")
 
 # TODO add 2 more dictionaries to that file 1) alias 2) Time_taken
 
-# worker_update_status_dict["time_taken"] = res
+# worker_update_status_dict["time_taken"] = total_time_taken
 # worker_update_status_dict["alias"] = alias
 
 worker_update_status_dict.update({"time_taken": res, "alias": alias})
 
-# time_taken = {"time_taken": res}
+# time_taken = {"time_taken": total_time_taken}
 # alias_in_dict = {"alias": alias}
 # # print(f"For {alias_in_dict} worker update time is {time_taken}")
 with open("worker_update.json", "w") as data_file:

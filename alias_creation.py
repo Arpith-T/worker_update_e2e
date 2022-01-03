@@ -6,7 +6,7 @@ import requests
 import trm_token
 
 aciat001_base_url = "https://it-aciat001-trm.cfapps.sap.hana.ondemand.com/api/trm/v1"
-worker_version = "6.21.3"
+worker_version = "6.22.0"
 
 
 def alias_creation(alias_name=input("Enter the Alias Name you want - ")):

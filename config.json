@@ -3,7 +3,10 @@
     "softwareUpdateOperationType": "SCHEDULE",
     "scheduledUtc": "",
     "completeSystem": true
+
   },
+  "read_this_for_url": ["aciat001 - https://it-aciat001-trm.cfapps.sap.hana.ondemand.com",
+    "acpet001 - https://it-acpet001-trm.cfapps.sap.hana.ondemand.com", "ziat001 - https://it-ziat001-trm.cfapps.eu20.hana.ondemand.com"],
   "base_url": "https://it-aciat001-trm.cfapps.sap.hana.ondemand.com"
 
 }

@@ -12,7 +12,6 @@ def read_config():
     return conf
 
 config = read_config()
-
 alias = alias_creation()
 
 
@@ -129,7 +128,6 @@ def list_of_failed_tasks(worker_update_file):
         res_in_dict[task] = failed_tasks
         return failed_tasks
 
-
 def push_overall_status(worker_update_status):
 
     update_status_total = (worker_update_status["total"])
@@ -159,7 +157,6 @@ def push_overall_status(worker_update_status):
     else:
         print("Dev-Data Insertion Failed")
         print(overall_status_dict)
-
 
 def push_worker_update_status(worker_update_status):
 
@@ -193,6 +190,50 @@ def push_worker_update_status(worker_update_status):
         else:
             print("Dev-Data Insertion Failed")
             print(worker_update_dict)
+
+def push_failed_subtask(failed_subtasks):
+    dev_client = InfluxDBClient('hci-rit-prism-sel.cpis.c.eu-de-2.cloud.sap', 8086, 'arpdb')
+    dev_client.switch_database('arpdb')
+
+    for task, subtask in data.items():
+        task_id = task
+        subtask_id = data[task]["id"]
+        failed_at = data[task]["type"]
+        due_to = data[task]["comments"]
+        no_of_retries = data[task]["retryCount"]
+        creationTime = data[task]["creationTime"]
+        timeOut = data[task]["timeOut"]
+        rollbackTimeout = data[task]["rollbackTimeout"]
+        rollbackComments = data[task]["rollbackComments"]
+        status = data[task]["status"]
+
+        Failed_Subtasks_Info = [
+            {
+                "measurement": "Failed_Subtasks_Info",
+                "tags": {
+                    "alias": alias
+                },
+                "fields": {
+                    "task_id": task_id,
+                    "subtask_id": subtask_id,
+                    "failed_at": failed_at,
+                    "no_of_retries": no_of_retries,
+                    "creationTime": creationTime,
+                    "timeOut": timeOut,
+                    "rollbackTimeout": rollbackTimeout,
+                    "rollbackComments": rollbackComments,
+                    "status": status
+
+                }
+            }
+        ]
+        print(Failed_Subtasks_Info)
+        if dev_client.write_points(Failed_Subtasks_Info, protocol='json'):
+            print("Data Insertion success")
+            pass
+        else:
+            print("Dev-Data Insertion Failed")
+            print(Failed_Subtasks_Info)
 
 
 url = f"{config['base_url']}/api/trm/v1/tenant-softwares/versions/{alias}/tenants"
@@ -275,17 +316,7 @@ infra_client.switch_database('arpdb')
 
 push_overall_status(worker_update_status=res_in_dict)
 push_worker_update_status(worker_update_status=res_in_dict)
+with open("failed_subtasks.json", "r") as data_file:
+    data = json.loads(data_file.read())
+push_failed_subtask(failed_subtasks=data)
 
-
-# def main():
-#     alias = alias_creation()
-#     worker_update_status = initiate_poll_worker_update(alias=alias)
-#     print(worker_update_status)
-#     time.sleep(25)
-#     # infra_client = InfluxDBClient('hci-rit-prism-sel.cpis.c.eu-de-2.cloud.sap', 8086, 'arpdb')
-#     # infra_client.switch_database('arpdb')
-#     push_overall_status(worker_update_status=worker_update_status)
-#     push_worker_update_status(worker_update_status=worker_update_status)
-#
-# if __name__ == "__main__":
-#     main()

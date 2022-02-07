@@ -2,11 +2,11 @@ import json
 
 import requests
 
-# alias_name = input("Enter teh Alias Name you want - ")
+# alias_name = input("Enter the Alias Name you want - ")
 import trm_token
 
 aciat001_base_url = "https://it-aciat001-trm.cfapps.sap.hana.ondemand.com/api/trm/v1"
-worker_version = "6.22.0"
+worker_version = "6.23.2"
 
 
 def alias_creation(alias_name=input("Enter the Alias Name you want - ")):

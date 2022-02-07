@@ -20,4 +20,4 @@ def aciat001_trm_token():
     return res_in_dict["access_token"]
 
 
-aciat001_trm_token()
+# aciat001_trm_token()

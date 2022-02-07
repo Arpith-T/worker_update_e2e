@@ -1,0 +1,13 @@
+{
+  "8d9d2474-208b-434c-8f5d-5403aa26c546": {
+    "id": 1208990,
+    "type": "WORKER_APPLICATION_CREATION",
+    "status": "FAILED",
+    "creationTime": "",
+    "timeOut": "",
+    "rollbackTimeout": "",
+    "retryCount": 2,
+    "comments": "The task timeout has been reached",
+    "rollbackComments": ""
+  }
+}
